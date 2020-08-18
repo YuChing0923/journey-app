@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif;
+  color: #444;
+  font-size: 16px;
+}
+
+// common style
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media (min-width: 576px) {
+    width: 100%;
+    // margin-top: 10%;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+    // margin-top: 10%;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px;
+    // margin-top: 10%;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+    // margin-top: 10%;
+  }
+}
+
+.form_control {
+  display: block;
+  width: 100px;
+  height: 40px;
+  padding: 7px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+button {
+  background-color: #38B5ED;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: .2s;
+
+  &:hover {
+    background-color: #229fd8;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .1);
+    transition: .2s;
+  }
+}
+
+.navbar {
+  background-color: #999;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+
+  .logo{
+    padding: 20px 0;
+  }
+
+  ul.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    li{
+        padding: 20px 10px;
+    }
+  }
+}
+
+.main_page {
+  background-color: #ddd;
+  height: 550px;
+  display: flex;
+  align-items: center;
+
+  .container {
+
+    .title {
+      width: 100%;
+      text-align: center;
+    }
+
+    input.main_search {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    .main_button {
+      width: 100%;
+      text-align: center;
+
+      button.btn {
+        margin: 20px 20px;
+        width: 120px;
+
+        &.cancel {
+          background-color: #fff;
+          color: #555;
+
+          &:hover {
+            background-color: #eee;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer.footer {
+  background-color: #999;
+  padding: 10px 30px;
+}
