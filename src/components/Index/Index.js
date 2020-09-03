@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 import '../../assets/main.scss';
 
 function Index() {
@@ -16,6 +19,7 @@ function Index() {
         <div className="container">
           <h1 className="title">tripMap</h1>
           <input type="text" placeholder="搜尋景點" className="form_control main_search" />
+          <FontAwesomeIcon icon={faCoffee} />
           <div className="main_button">
             <button className="btn cancel">搜尋</button>
             <button className="btn">搜尋</button>
