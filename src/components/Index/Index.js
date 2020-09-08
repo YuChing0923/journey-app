@@ -7,9 +7,9 @@ function Index() {
       <nav className="navbar">
         <div className="logo">tripMap</div>
         <ul className="menu">
-          <li><a href="">nav</a></li>
-          <li><a href="">nav</a></li>
-          <li><a href="">nav</a></li>
+          <li><a href="#">nav</a></li>
+          <li><a href="#">nav</a></li>
+          <li><a href="#">nav</a></li>
         </ul>
       </nav>
       <div className="main_page">

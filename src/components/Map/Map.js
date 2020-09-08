@@ -3,13 +3,21 @@ import '../../assets/main.scss';
 
 function Map() {
   return (
-    <div className="App">
-      <div className="main_page">
-        <div className="container">
-          <h1 className="title">Map</h1>
+    <div className="map_page">
+      <div className="timetable">
+        <nav>
+          <ul>
+            <li>nav</li>
+            <li>nav</li>
+            <li>nav</li>
+          </ul>
+        </nav>
+        <div className="timetable_list">
+          <div className="schedule">123</div>
+          <div className="schedule">123</div>
+          <div className="schedule">123</div>
         </div>
       </div>
-      <footer className="footer">tripMap</footer>
     </div>
   );
 }
