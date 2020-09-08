@@ -10,6 +10,12 @@ body {
   font-size: 16px;
 }
 
+a {
+  text-decoration: inherit;
+  color: #fff;
+  font-size: 14px;
+}
+
 // common style
 .main_container {
   min-height: 100vh;
@@ -89,13 +95,18 @@ button {
 }
 
 .navbar {
-  background-color: #999;
+  position: absolute;
+  width: 100%;
+  background: rgba(0, 0, 0, .2);
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
 
   .logo{
+    font-size: 22px;
     padding: 20px 0;
+    color: #fff;
+    font-weight: bold;
   }
 
   ul.menu {
@@ -104,6 +115,7 @@ button {
     margin: 0;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     li{
         padding: 20px 10px;
     }
@@ -111,17 +123,11 @@ button {
 }
 
 .main_page {
-  background-color: #ddd;
   height: 550px;
   display: flex;
   align-items: center;
 
   .container {
-
-    .title {
-      width: 100%;
-      text-align: center;
-    }
 
     input.main_search {
       display: block;
@@ -152,27 +158,38 @@ button {
         }
       }
     }
-    
-    .sub_title {
-      margin-top: 10px;
-      width: 100%;
-      font-size: 14px;
-      text-align: center;
-    }
   }
 }
 
 .index {
   min-height: 100vh;
   .main_page {
-    height: calc(100vh - 96px);
+    height: calc(100vh - 38px);
+    background: url("./../image/index-background.jpg") center center;
+    background-size: cover;
     .container {
       margin-bottom: 100px;
     }
   }
+  .title {
+    color: #fff;
+    font-size: 64px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-align: center;
+  }
+  .sub_title {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  }
 }
 
 footer.footer {
-  background-color: #999;
+  background-color: #030303;
+  color: #606a7f;
   padding: 10px 30px;
 }
