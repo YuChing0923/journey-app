@@ -1,25 +1,25 @@
 import React from 'react';
 import '../../assets/scss/main.scss';
 
-function Index() {
+function Map() {
   return (
-    <div className="App">
-      <nav className="navbar">
-        <div className="logo">tripMap</div>
-        <ul className="menu">
-          <li><a href="">nav</a></li>
-          <li><a href="">nav</a></li>
-          <li><a href="">nav</a></li>
-        </ul>
-      </nav>
-      <div className="main_page">
-        <div className="container">
-          <h1 className="title">Map</h1>
+    <div className="map_page">
+      <div className="timetable">
+        <nav>
+          <ul>
+            <li>nav</li>
+            <li>nav</li>
+            <li>nav</li>
+          </ul>
+        </nav>
+        <div className="timetable_list">
+          <div className="schedule">123</div>
+          <div className="schedule">123</div>
+          <div className="schedule">123</div>
         </div>
       </div>
-      <footer className="footer">tripMap</footer>
     </div>
   );
 }
 
-export default Index;
+export default Map;
