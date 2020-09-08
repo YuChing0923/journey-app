@@ -1,12 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import '../../assets/main.scss';
 
 function Index() {
   return (
-    <div className="App">
+    <div className="index">
       <nav className="navbar">
         <div className="logo">tripMap</div>
         <ul className="menu">
@@ -18,8 +18,13 @@ function Index() {
       <div className="main_page">
         <div className="container">
           <h1 className="title">tripMap</h1>
-          <input type="text" placeholder="搜尋景點" className="form_control main_search" />
-          <FontAwesomeIcon icon={faCoffee} />
+          <div className="form_control">
+            <input type="text" placeholder="搜尋景點" className="main_search" />
+            <i className="icon search"><FontAwesomeIcon icon={faSearch} /></i>
+          </div>
+          <div className="sub_title">
+            找不到喜歡的？自己安排一個！
+          </div>
           <div className="main_button">
             <button className="btn cancel">搜尋</button>
             <button className="btn">搜尋</button>
