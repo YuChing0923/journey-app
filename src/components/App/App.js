@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Index from '../Index/Index.js';
 import Map from '../Map/Map.js';
-import '../../assets/main.scss';
+import '../../assets/scss/main.scss';
 
 function App() {
   return (

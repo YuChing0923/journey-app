@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/main.scss';
+import '../../assets/scss/main.scss';
 
 function Index() {
   return (

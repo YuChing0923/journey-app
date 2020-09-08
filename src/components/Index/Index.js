@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import '../../assets/main.scss';
+import '../../assets/scss/main.scss';
 
 function Index() {
   return (
