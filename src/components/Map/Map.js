@@ -12,7 +12,7 @@ function Map() {
             <li>nav</li>
           </ul>
         </nav>
-        <div className="timetable_list">
+        <div className="timetable_list scroll">
           <div className="schedule">123</div>
           <div className="schedule">123</div>
           <div className="schedule">123</div>
