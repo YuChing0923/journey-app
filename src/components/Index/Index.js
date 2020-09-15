@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +11,12 @@ function Index() {
       <nav className="navbar">
         <div className="logo">TripMap</div>
         <ul className="menu">
-          <li><a href="">行程安排</a></li>
+          <li>
+            <Link to={`/map/`}>行程安排</Link>
+          </li>
+          <li>
+            <Link to={`/list/`}>行程分享</Link>
+          </li>
         </ul>
       </nav>
       <div className="main_page">
