@@ -20,6 +20,7 @@ a {
 .main_container {
   min-height: 100vh;
 }
+
 .container {
   width: 100%;
   padding-right: 15px;
@@ -56,6 +57,7 @@ a {
   position: relative;
   display: block;
   width: 100%;
+
   input {
     height: 40px;
     padding: 7px 18px;
@@ -68,6 +70,7 @@ a {
     border: 1px solid #ced4da;
     border-radius: 2rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
     &:focus {
       outline: inherit;
     }
@@ -94,6 +97,45 @@ button {
   }
 }
 
+.scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.05);
+    display: none;
+    border-radius: 15px;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+
+  &:hover::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    display: block;
+  }
+}
+
 .navbar {
   position: absolute;
   width: 100%;
@@ -102,7 +144,7 @@ button {
   justify-content: space-between;
   padding: 0 30px;
 
-  .logo{
+  .logo {
     font-size: 22px;
     padding: 20px 0;
     color: #fff;
@@ -116,8 +158,9 @@ button {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    li{
-        padding: 20px 10px;
+
+    li {
+      padding: 20px 10px;
     }
   }
 }
@@ -163,14 +206,17 @@ button {
 
 .index {
   min-height: 100vh;
+
   .main_page {
     height: calc(100vh - 38px);
     background: url("./../image/index-background.jpg") center center;
     background-size: cover;
+
     .container {
       margin-bottom: 100px;
     }
   }
+
   .title {
     color: #fff;
     font-size: 64px;
@@ -178,6 +224,7 @@ button {
     width: 100%;
     text-align: center;
   }
+
   .sub_title {
     margin-top: 10px;
     width: 100%;
@@ -209,27 +256,34 @@ footer.footer {
     width: 30vw;
     // margin-left: 50px;
     display: flex;
-    align-items:stretch;
-    nav{
-        // height: 100%;
-        background-color: #777;
-        // width: 25px;
-        padding: 10px;
-        ul{
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            color: #fff;
-        }
+    align-items: stretch;
+
+    nav {
+      // height: 100%;
+      background-color: #777;
+      // width: 25px;
+      padding: 10px;
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+      }
     }
-    .timetable_list{
+
+    .timetable_list {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      padding: 20px;
+
+      .schedule {
+        background-color: #aaa;
+        margin-bottom: 10px;
         padding: 20px;
-        .schedule{
-            background-color: #ddd;
-            margin-bottom: 10px;
-            padding: 20px;
-            width: 150px;
-        }
+        width: 100%;
+      }
     }
   }
   .google-map-section {
