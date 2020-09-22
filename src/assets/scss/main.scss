@@ -259,16 +259,25 @@ footer.footer {
     align-items: stretch;
 
     nav {
-      // height: 100%;
-      background-color: #777;
-      // width: 25px;
-      padding: 10px;
+      background-color: #65965a;
 
       ul {
         list-style: none;
         margin: 0;
         padding: 0;
         color: #fff;
+        li {
+          writing-mode: vertical-lr;
+          text-orientation: mixed;
+          padding: 10px;
+          cursor: pointer;
+          &:hover {
+            background-color: #3c8f28;
+          }
+          &.active {
+            background-color: #317d1f;
+          }
+        }
       }
     }
 
@@ -276,13 +285,30 @@ footer.footer {
       width: 100%;
       height: 100%;
       overflow-y: scroll;
-      padding: 20px;
+      padding: 30px 20px;
 
       .schedule {
-        background-color: #aaa;
         margin-bottom: 10px;
-        padding: 20px;
+        padding: 0 20px;
         width: 100%;
+        font-size: 14px;
+        display: flex;
+        cursor: pointer;
+        .title {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+        .time {
+          font-size: 1rem;
+          font-weight: bold;
+          margin: 0 10px 10px 0;
+          display: inline-block;
+          color: #575757;
+          border: 1px solid #97c6e9;
+          padding: 4px;
+          border-radius: 4px;
+        }
       }
     }
   }
@@ -297,6 +323,21 @@ footer.footer {
     z-index: 100;
     position: absolute;
     padding: 10px;
-    font-size: 16px;
+    font-size: 15px;
+    transform: translate(-50%, -42px);
+    width: 160px;
+    text-align: center;
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 10px 0 10px;
+      border-color: #ff7c7c transparent transparent transparent;
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translate(-50%, 0);
+    }
   }
 }
