@@ -15,7 +15,7 @@ function Index() {
             <Link to={`/map/`}>行程安排</Link>
           </li>
           <li>
-            <Link to={`/list/`}>行程分享</Link>
+            <Link to={`/result/`}>行程分享</Link>
           </li>
         </ul>
       </nav>
