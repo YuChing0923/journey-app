@@ -287,3 +287,98 @@ footer.footer {
     }
   }
 }
+
+.list_page {
+  .navbar {
+    position: relative;
+  }
+
+  .search {
+    width: 100%;
+    margin: 40px 10px 0;
+
+    input {
+      width: 100%;
+      padding: 10px 20px;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+    }
+  }
+
+  .result {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .result_division {
+    .division_block {
+      width: 33.333%;
+      background-color: #fff;
+      padding: 10px;
+      position: relative;
+
+      .image {
+        background-color: #ddd;
+        height: 180px;
+      }
+
+      .info {
+        background-color: #555;
+        padding: 15px 20px;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        .main_info{
+        display: flex;
+        flex-wrap: wrap;
+          .title{
+            width: 100%;
+            line-height: 30px;
+            font-size: 18px;
+          }
+          .author{
+            width: 100%;
+            font-size: 12px;
+          }
+        }
+        .time{
+          font-size: 12px;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .result_list{
+    .list_block{
+      margin: 10px;
+      padding: 20px 30px;
+      border-radius: 5px;
+      width: 100%;
+      background-color: #ddd;
+      position: relative;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sub_info{
+      display: flex;
+      flex-wrap: wrap;
+      text-align: right;
+      .author{
+        width: 100%;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .time{
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+  }
+}
