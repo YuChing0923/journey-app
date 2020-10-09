@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../assets/scss/main.scss';
 import GoogleMapReact from 'google-map-react';
 import moment from 'moment';
-import { GOOGLE_MAP } from '../../assets/key';
+// import { GOOGLE_MAP } from '../../assets/key';
 
 let data = [
   {
@@ -102,7 +102,7 @@ class SimpleMap extends Component {
           moveMark: data => this.moveMark(data),
         }}/>
         <div className="google-map-section">
-          <GoogleMapReact
+          {/*<GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAP.KEY }}
             defaultCenter={this.state.center}
             defaultZoom={this.props.zoom}
@@ -114,7 +114,7 @@ class SimpleMap extends Component {
                 landmark: currentMark,
               }}
             />
-          </GoogleMapReact>
+          </GoogleMapReact>*/}
         </div>
       </div>
     );
