@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../../assets/scss/main.scss';
-// import GoogleMapReact from 'google-map-react';
-// import moment from 'moment';
-// import { GOOGLE_MAP } from '../../assets/key';
+import GoogleMapReact from 'google-map-react';
+import moment from 'moment';
+import { GOOGLE_MAP } from '../../assets/key';
 
 let data = [
   {
@@ -51,7 +51,7 @@ const TimeTable = (props) => {
               })
             }}>
               <div>
-                {/*<div className="time">{moment(d.date).format('HH:mm')}</div>*/}
+                <div className="time">{moment(d.date).format('HH:mm')}</div>
               </div>
               <div>
                 <div className="title">{d.landmark}</div>
@@ -102,7 +102,7 @@ class SimpleMap extends Component {
           moveMark: data => this.moveMark(data),
         }}/>
         <div className="google-map-section">
-          {/*<GoogleMapReact
+          <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAP.KEY }}
             defaultCenter={this.state.center}
             defaultZoom={this.props.zoom}
@@ -114,7 +114,7 @@ class SimpleMap extends Component {
                 landmark: currentMark,
               }}
             />
-          </GoogleMapReact>*/}
+          </GoogleMapReact>
         </div>
       </div>
     );
