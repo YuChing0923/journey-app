@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../assets/scss/main.scss';
-import GoogleMapReact from 'google-map-react';
-import moment from 'moment';
+// import GoogleMapReact from 'google-map-react';
+// import moment from 'moment';
 // import { GOOGLE_MAP } from '../../assets/key';
 
 let data = [
@@ -51,7 +51,7 @@ const TimeTable = (props) => {
               })
             }}>
               <div>
-                <div className="time">{moment(d.date).format('HH:mm')}</div>
+                {/*<div className="time">{moment(d.date).format('HH:mm')}</div>*/}
               </div>
               <div>
                 <div className="title">{d.landmark}</div>
