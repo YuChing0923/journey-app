@@ -243,32 +243,41 @@ footer.footer {
 
 //map page
 .map_page {
-  background-color: #ddd;
   width: 100vw;
   height: 100vh;
+  position: relative;
 
-  .timetable {
-    position: absolute;
-    top: 50px;
-    left: 50px;
+  .timetable{
+    position: fixed;
+    z-index: 100;
+    right: 0;
     background-color: #fff;
-    width: 25%;
-    height: calc(100vh - 100px);
+    height: 100vh;
+    width: 30vw;
     // margin-left: 50px;
     display: flex;
     align-items: stretch;
 
     nav {
-      // height: 100%;
-      background-color: #777;
-      // width: 25px;
-      padding: 10px;
+      background-color: #65965a;
 
       ul {
         list-style: none;
         margin: 0;
         padding: 0;
         color: #fff;
+        li {
+          writing-mode: vertical-lr;
+          text-orientation: mixed;
+          padding: 10px;
+          cursor: pointer;
+          &:hover {
+            background-color: #3c8f28;
+          }
+          &.active {
+            background-color: #317d1f;
+          }
+        }
       }
     }
 
@@ -276,14 +285,59 @@ footer.footer {
       width: 100%;
       height: 100%;
       overflow-y: scroll;
-      padding: 20px;
+      padding: 30px 20px;
 
       .schedule {
-        background-color: #aaa;
         margin-bottom: 10px;
-        padding: 20px;
+        padding: 0 20px;
         width: 100%;
+        font-size: 14px;
+        display: flex;
+        cursor: pointer;
+        .title {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+        .time {
+          font-size: 1rem;
+          font-weight: bold;
+          margin: 0 10px 10px 0;
+          display: inline-block;
+          color: #575757;
+          border: 1px solid #97c6e9;
+          padding: 4px;
+          border-radius: 4px;
+        }
       }
+    }
+  }
+  .google-map-section {
+    width: 70%;
+    height: 100vh;
+  }
+  .pin {
+    background-color: #ff7c7c;
+    color: #fff;
+    border-radius: 3px;
+    z-index: 100;
+    position: absolute;
+    padding: 10px;
+    font-size: 15px;
+    transform: translate(-50%, -42px);
+    width: 160px;
+    text-align: center;
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 10px 0 10px;
+      border-color: #ff7c7c transparent transparent transparent;
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translate(-50%, 0);
     }
   }
 }
