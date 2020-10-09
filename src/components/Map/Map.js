@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
 import '../../assets/scss/main.scss';
 import GoogleMapReact from 'google-map-react';
-import { GOOGLE_MAP } from '../../assets/key'
+import moment from 'moment';
+import { GOOGLE_MAP } from '../../assets/key';
+
+let data = [
+  {
+    id: 1,
+    date: '2020/09/28 10:00:00',
+    landmark: '崎頂隧道文化公園',
+    lat: 24.7295481,
+    lng: 120.8764177,
+    content: '第一站！',
+  },
+  {
+    id: 2,
+    date: '2020/09/28 12:00:00',
+    landmark: '建中國小3D彩繪階梯',
+    lat: 24.4138864,
+    lng: 120.7683948,
+    content: '',
+  },
+  {
+    id: 3,
+    date: '2020/09/28 14:00:00',
+    landmark: '龍騰斷橋(魚藤坪斷橋)',
+    lat: 24.3584335,
+    lng: 120.7716469,
+    content: '',
+  },
+]
 
 const TimeTable = (props) => {
   return (
@@ -14,44 +42,23 @@ const TimeTable = (props) => {
         </ul>
       </nav>
       <div className="timetable_list">
-        <div className="schedule" onClick={() => {
-          props.moveMark({
-            lat: 24.7295481,
-            lng: 120.8764177,
-            landmark: '崎頂隧道文化公園',
-          })
-        }}>
-          <div><div className="time">10:00</div></div>
-          <div>
-            <div className="title">崎頂隧道文化公園</div>
-            <p className="content">第一站！</p>
-          </div>
-        </div>
-        <div className="schedule" onClick={() => {
-          props.moveMark({
-            lat: 24.4138864,
-            lng: 120.7683948,
-            landmark: '建中國小3D彩繪階梯',
-          })
-        }}>
-          <div><div className="time">12:00</div></div>
-          <div>
-            <div className="title">建中國小3D彩繪階梯</div>
-            <p className="content">順便吃飯吃飯吃飯</p>
-          </div>
-        </div>
-        <div className="schedule" onClick={() => {
-          props.moveMark({
-            lat: 24.3584335,
-            lng: 120.7716469,
-            landmark: '龍騰斷橋(魚藤坪斷橋)',
-          })
-        }}>
-          <div><div className="time">14:00</div></div>
-          <div>
-            <div className="title">龍騰斷橋(魚藤坪斷橋)</div>
-          </div>
-        </div>
+        { data.map(d =>
+            <div className="schedule" onClick={() => {
+              props.moveMark({
+                lat: d.lat,
+                lng: d.lng,
+                landmark: d.landmark,
+              })
+            }}>
+              <div>
+                <div className="time">{moment(d.date).format('HH:mm')}</div>
+              </div>
+              <div>
+                <div className="title">{d.landmark}</div>
+                <p className="content">{d.content}</p>
+              </div>
+            </div>
+          ) }
       </div>
     </div>
   );
@@ -61,7 +68,7 @@ class SimpleMap extends Component {
   static defaultProps = {
     zoom: 17
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -74,7 +81,7 @@ class SimpleMap extends Component {
       currentMark: '崎頂隧道文化公園',
     }
   }
-  
+
   moveMark = (data) => {
     this.setState({
       currentlat: data.lat,
