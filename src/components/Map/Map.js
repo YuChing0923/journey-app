@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../../assets/scss/main.scss';
 import GoogleMapReact from 'google-map-react';
 import moment from 'moment';
@@ -29,8 +29,73 @@ let data = [
     lng: 120.7716469,
     content: '',
   },
+  {
+    id: 4,
+    date: '2020/09/28 15:00:00',
+    landmark: '路思義教堂',
+    lat: 24.1788952,
+    lng: 120.5983652,
+    content: '',
+  },
+  {
+    id: 5,
+    date: '2020/09/28 20:00:00',
+    landmark: '望高寮夜景公園',
+    lat: 24.1435843,
+    lng: 120.5791395,
+    content: '',
+  },
 ]
 
+
+const SimpleMap = ({zoom}) => {
+  const [center, setCenter] = useState({
+        lat: 23.546162,
+        lng: 120.6402133,
+      });
+  const [currentlat, setCurrentlat] = useState(24.7295481);
+  const [currentlng, setCurrentlng] = useState(120.8764177);
+  const [currentMark, setCurrentMark] = useState('崎頂隧道文化公園');
+
+  return (
+    <div className="map_page">
+      <TimeTable {...{
+        moveMark: data => {
+          setCenter({
+            lat: data.lat,
+            lng: data.lng,
+          });
+          setCurrentlat(data.lat);
+          setCurrentlng(data.lng);
+          setCurrentMark(data.landmark);
+        },
+      }}/>
+      <div className="google-map-section">
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: GOOGLE_MAP.KEY }}
+          defaultCenter={center}
+          defaultZoom={zoom}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps, data)}
+        >
+        {/* data.map(d => <Pin
+            {...{
+              lat: d.lat,
+              lng: d.lng,
+              landmark: d.landmark,
+            }}
+          />) */}
+        </GoogleMapReact>
+      </div>
+    </div>
+  );
+}
+SimpleMap.defaultProps = {
+    zoom: 8
+}
+
+
+// 時間軸
 const TimeTable = (props) => {
   return (
     <div className="timetable">
@@ -43,7 +108,7 @@ const TimeTable = (props) => {
       </nav>
       <div className="timetable_list">
         { data.map(d =>
-            <div className="schedule" onClick={() => {
+            <div key={d.id} className="schedule" onClick={() => {
               props.moveMark({
                 lat: d.lat,
                 lng: d.lng,
@@ -64,62 +129,47 @@ const TimeTable = (props) => {
   );
 }
 
-class SimpleMap extends Component {
-  static defaultProps = {
-    zoom: 17
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      center: {
-        lat: 24.7295481,
-        lng: 120.8764177,
-      },
-      currentlat: 24.7295481,
-      currentlng: 120.8764177,
-      currentMark: '崎頂隧道文化公園',
+// google api
+const handleApiLoaded = (map, maps, data) => {
+  if (map) {
+    // 景點繪製
+    for (let d of data) {
+      let marker = new maps.Marker({
+        position: { lat: d.lat, lng: d.lng},
+        map,
+        title: d.landmark,
+      });
     }
-  }
 
-  moveMark = (data) => {
-    this.setState({
-      currentlat: data.lat,
-      currentlng: data.lng,
-      currentMark: data.landmark,
-      center: {
-        lat: data.lat,
-        lng: data.lng,
-      },
-    })
-  }
+    // 路徑繪製
+    const directionsService = new maps.DirectionsService();
+    const directionsDisplay = new maps.DirectionsRenderer();
+    let waypoints = [];
+    if (data.length > 2) {
+      for (let i = 1; i < data.length - 1; i++) {
+        waypoints.push({location: data[i].landmark})
+      }
+    }
 
-  render() {
-    const { currentlat, currentlng, currentMark } = this.state;
-    return (
-      <div className="map_page">
-        <TimeTable {...{
-          moveMark: data => this.moveMark(data),
-        }}/>
-        <div className="google-map-section">
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: GOOGLE_MAP.KEY }}
-            defaultCenter={this.state.center}
-            defaultZoom={this.props.zoom}
-          >
-            <Pin
-              {...{
-                lat: currentlat,
-                lng: currentlng,
-                landmark: currentMark,
-              }}
-            />
-          </GoogleMapReact>
-        </div>
-      </div>
+    directionsService.route({
+      origin: data[0].landmark,
+      destination: data[data.length - 1].landmark,
+      waypoints: waypoints,
+      travelMode: 'DRIVING'
+    }, (response, status) => {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+        const routePolyline = new maps.Polyline({
+          path: response.routes[0].overview_path
+        });
+        routePolyline.setMap(map);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+        }
+      }
     );
   }
-}
+};
 
 const Pin = (props) => {
   return (
