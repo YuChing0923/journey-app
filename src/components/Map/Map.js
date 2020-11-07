@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../assets/scss/main.scss';
 import GoogleMapReact from 'google-map-react';
 import moment from 'moment';
@@ -19,67 +19,82 @@ const SimpleMap = ({zoom}) => {
   const [currentId, setCurrentId] = useState(false);
 
   // google api 路徑繪製
-  const handleApiLoaded = (map, maps, data) => {
-    console.log('handleApiLoaded', data)
+  const handleApiLoaded = (map, maps) => {
+    console.log('handleApiLoaded', data);
+    let allData = [];
+    for (let daliyData of data) {
+      allData.push(...daliyData)
+    }
+
     if (map) {
+      setMap(map);
       const directionsService = new maps.DirectionsService();
       const directionsDisplay = new maps.DirectionsRenderer();
       let waypoints = [];
-      if (data.length > 2) {
-        for (let i = 1; i < data.length - 1; i++) {
-          waypoints.push({location: data[i].landmark})
+      if (allData.length > 2) {
+        for (let i = 1; i < allData.length - 1; i++) {
+          waypoints.push({location: allData[i].landmark})
         }
       }
 
       directionsService.route({
-        origin: data[0].landmark,
-        destination: data[data.length - 1].landmark,
+        origin: allData[0].landmark,
+        destination: allData[allData.length - 1].landmark,
         waypoints: waypoints,
         travelMode: 'DRIVING'
-      }, (response, status) => {
-        if (status === 'OK') {
-          directionsDisplay.setDirections(response);
-          const routePolyline = new maps.Polyline({
-            path: response.routes[0].overview_path,
-            strokeColor: "#187afb",
-            strokeWeight: 3,
-            geodesic: true,
-          });
-          routePolyline.setMap(map);
-        } else {
-          window.alert('Directions request failed due to ' + status);
+        }, (response, status) => {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            const routePolyline = new maps.Polyline({
+              path: response.routes[0].overview_path,
+              strokeColor: "#187afb",
+              strokeWeight: 3,
+              geodesic: true,
+            });
+            routePolyline.setMap(map);
+          } else {
+            window.alert('Directions request failed due to ' + status);
           }
         }
       );
     }
   };
 
-  const onChildClick = () => {
-    console.log('onChildClick')
+  // code to run after currentDay render goes here
+  useEffect(() => {
+    onCenterChange({lat: data[currentDay][0].lat, lng: data[currentDay][0].lng})
+  }, [currentDay]);
+
+
+  // 重新定位中心
+  // postion = { lat: 0, lng: 0 }
+  const onCenterChange = position => {
+    if (map && position) map.setCenter(position)
   }
+
   const onChildMouseEnter = (index, childProps) => {
     setCurrentId(childProps.id);
-    console.log('onChildMouseEnter');
+    // console.log('onChildMouseEnter');
   }
   const onChildMouseLeave = () => {
     setCurrentId(false);
-    console.log('onChildMouseLeave')
+    // console.log('onChildMouseLeave')
   }
+
+  // 載入地圖
   const onMapLoaded = (map, maps) => {
     const initMakers = [];
-    for (let i = 0; i < data[currentDay].length; i++) {
-      initMakers.push({lat: data[currentDay][i].lat, lng: data[currentDay][i].lng})
-    }
-    // setMarkers(data[currentDay]);
     setMap(map);
     setMaps(maps);
     setMapLoaded(true);
   }
 
+  // 路徑圖繪製
   const afterMapLoadChanges = () => {
     return (
       <div style={{display: 'none'}}>
         <Polyline
+          data={data[currentDay]}
           map={map}
           maps={maps}
           markers={data[currentDay]} />
@@ -102,12 +117,12 @@ const SimpleMap = ({zoom}) => {
           defaultCenter={center}
           defaultZoom={zoom}
           yesIWantToUseGoogleMapApiInternals
-          onChildClick={onChildClick}
+          onChildClick={(key, childProps) => onCenterChange({lat: childProps.lat, lng: childProps.lng})}
           onChildMouseEnter={onChildMouseEnter}
           onChildMouseLeave={onChildMouseLeave}
           // onGoogleApiLoaded={({ map, maps }) => onMapLoaded(map, maps)}
           // Todo: travelMode
-          onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps, data[currentDay])}
+          onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         >
         { data[currentDay].map(d => <Maker
             {...{
@@ -154,7 +169,7 @@ const TimeTable = (props) => {
               })
             }}>
               <div>
-                <div className="time">{moment(d.date).format('HH:mm')}</div>
+                <div className="time">{moment(d.date, 'HH:mm').format('HH:mm')}</div>
               </div>
               <div>
                 <div className="title">{d.landmark}</div>
