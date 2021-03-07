@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 
 const Maker = (props) => {
   return (
-    <div className="pin">{props.landmark}</div>
+    <div className={`pin ${props.currentId === props.id ? 'active': ''}`}>{props.landmark}</div>
   );
 }
 

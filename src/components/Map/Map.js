@@ -22,8 +22,8 @@ const SimpleMap = ({zoom}) => {
   const handleApiLoaded = (map, maps) => {
     console.log('handleApiLoaded', data);
     let allData = [];
-    for (let daliyData of data) {
-      allData.push(...daliyData)
+    for (let dailyData of data) {
+      allData.push(...dailyData)
     }
 
     if (map) {
@@ -67,9 +67,10 @@ const SimpleMap = ({zoom}) => {
 
 
   // 重新定位中心
-  // postion = { lat: 0, lng: 0 }
-  const onCenterChange = position => {
-    if (map && position) map.setCenter(position)
+  // position = { lat: 0, lng: 0 }
+  const onCenterChange = (position, id) => {
+    if (map && position) map.setCenter(position);
+    setCurrentId(id);
   }
 
   const onChildMouseEnter = (index, childProps) => {
@@ -105,7 +106,12 @@ const SimpleMap = ({zoom}) => {
   return (
     <div className="map_page">
       <TimeTable {...{
-        moveMark: () => {},
+        moveMark: (data, id) => {
+          onCenterChange({
+            lat: data.lat,
+            lng: data.lng,
+          }, id)
+        },
         data: data,
         currentDay: currentDay,
         currentId: currentId,
@@ -131,6 +137,7 @@ const SimpleMap = ({zoom}) => {
               lat: d.lat,
               lng: d.lng,
               landmark: d.landmark[0],
+              currentId: currentId,
             }}
           />)}
         { mapLoaded ? afterMapLoadChanges() : null}
@@ -166,7 +173,7 @@ const TimeTable = (props) => {
                 lat: d.lat,
                 lng: d.lng,
                 landmark: d.landmark,
-              })
+              }, d.id)
             }}>
               <div>
                 <div className="time">{moment(d.date, 'HH:mm').format('HH:mm')}</div>

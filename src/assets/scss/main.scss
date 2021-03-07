@@ -341,7 +341,7 @@ footer.footer {
       top: 90%;
       transform: translate(-50%, 0);
     }
-    &:hover {
+    &:hover, &.active {
       background-color: #d84141;
       &::after {
         border-color: #d84141 transparent transparent transparent;
